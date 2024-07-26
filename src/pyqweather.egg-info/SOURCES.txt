@@ -14,3 +14,5 @@ src/pyqweather/packages/geo/city_lookup.py
 src/pyqweather/packages/geo/city_top.py
 src/pyqweather/packages/geo/poi_lookup.py
 src/pyqweather/packages/geo/poi_range.py
+src/pyqweather/packages/weather/__init__.py
+src/pyqweather/packages/weather/weather_now.py

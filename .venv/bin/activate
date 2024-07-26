@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/mnt/d/Projects/20240726-qweather-py/.venv"
+VIRTUAL_ENV="/mnt/d/Projects/20240726-components-pyqweather/src/.venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

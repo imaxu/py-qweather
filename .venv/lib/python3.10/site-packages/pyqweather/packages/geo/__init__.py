@@ -1,4 +1,4 @@
-
+#coding: utf-8
 from pyqweather import QWeatherPackBase
 from pyqweather.packages.geo.city_lookup import CityLookupRequest, CityLookupResponse
 from pyqweather.packages.geo.city_top import CityTopRequest, CityTopResponse

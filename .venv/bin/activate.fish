@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/mnt/d/Projects/20240726-qweather-py/.venv"
+set -gx VIRTUAL_ENV "/mnt/d/Projects/20240726-components-pyqweather/src/.venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

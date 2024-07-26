@@ -2,6 +2,7 @@
 
 from pyqweather import QWeatherConfig
 from pyqweather.packages.geo import QWeatherGeoPack
+from pyqweather.packages.weather import QWeatherWeatherPack
 
 class QWeatherFactory:
   
@@ -25,3 +26,7 @@ class QWeatherFactory:
   
   def create_geo_pack(self, config: QWeatherConfig) -> QWeatherGeoPack:
     return QWeatherGeoPack(config)
+  
+  
+  def create_weather_pack(self, config: QWeatherConfig) -> QWeatherWeatherPack:
+    return QWeatherWeatherPack(config)
