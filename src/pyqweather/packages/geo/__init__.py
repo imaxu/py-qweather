@@ -8,20 +8,20 @@ import inspect
 
 class QWeatherGeoPack(QWeatherPackBase):
   
-  _URL = 'https://geoapi.qweather.com/v2'
+  # _URL = 'https://geoapi.qweather.com/v2'
     
     
   def city_lookup(self, location:str, adm:str=None, range:str='cn', number:int=10, lang:str='zh-hans'):
     """城市搜索"""
     req = CityLookupRequest(location=location, adm=adm, range=range, number=number, lang=lang)
-    data = req.with_url(self._URL).with_credential(self.get_conf().get_credential()).get()
+    data = req.with_url(self.get_conf().domain).with_credential(self.get_conf().get_credential()).get()
     return CityLookupResponse(**data)
   
   
   def city_top(self, range:str='cn', number:int=10, lang:str='zh-hans'):
     """热门城市列表"""
     req = CityTopRequest(range=range, number=number, lang=lang)
-    data = req.with_url(self._URL).with_credential(self.get_conf().get_credential()).get()
+    data = req.with_url(self.get_conf().domain).with_credential(self.get_conf().get_credential()).get()
     return CityTopResponse(**data)
   
   
@@ -33,7 +33,7 @@ class QWeatherGeoPack(QWeatherPackBase):
     del args.locals['self']
     
     req = PoiLookupRequest(**args.locals)
-    data = req.with_url(self._URL).with_credential(self.get_conf().get_credential()).get()
+    data = req.with_url(self.get_conf().domain).with_credential(self.get_conf().get_credential()).get()
     return PoiLookupResponse(**data)  
   
   
@@ -45,5 +45,5 @@ class QWeatherGeoPack(QWeatherPackBase):
     del args.locals['self']  
       
     req = PoiRangeRequest(**args.locals)
-    data = req.with_url(self._URL).with_credential(self.get_conf().get_credential()).get()
+    data = req.with_url(self.get_conf().domain).with_credential(self.get_conf().get_credential()).get()
     return PoiRangeResponse(**data)  

@@ -4,14 +4,15 @@ import unittest
 from pyqweather import QWeatherConfig
 from pyqweather.factories import QWeatherFactory
 
-from pyqweather.auth import EnvironmentVariableSimpleAuthCredential
+from pyqweather.auth import EnvironmentVariableSimpleAuthCredential, EnvironmentVariableSignAuthCredential
 
 class TestMethods(unittest.TestCase):
   
+  _domain = 'https://api.qweather.com/v7'
   
   def test_qweather_weather_weather_now(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_weather_pack(conf)
     

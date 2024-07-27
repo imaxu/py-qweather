@@ -9,5 +9,5 @@ class QWeatherWeatherPack(QWeatherPackBase):
   def weather_now(self, location, lang:str='zh-hans', unit:str='m'):
     """实时天气"""
     req = WeatherNowRequest(location=location,lang=lang, unit=unit)
-    data = req.with_url(self._URL).with_credential(self.get_conf().get_credential()).get()
+    data = req.with_url(self.get_conf().domain).with_credential(self.get_conf().get_credential()).get()
     return WeatherNowResponse(**data)

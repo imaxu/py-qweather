@@ -5,13 +5,14 @@ from pyqweather import QWeatherConfig
 from pyqweather.factories import QWeatherFactory
 
 from pyqweather.auth import EnvironmentVariableSimpleAuthCredential
+from . import domain
 
 class TestMethods(unittest.TestCase):
     
     
   def test_qweather_geo_city_lookup(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_geo_pack(conf)
     
@@ -26,7 +27,7 @@ class TestMethods(unittest.TestCase):
     
   def test_qweather_geo_city_top(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_geo_pack(conf)
     
@@ -40,7 +41,7 @@ class TestMethods(unittest.TestCase):
     
   def test_qweather_geo_poi_lookup(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_geo_pack(conf)
     
@@ -53,7 +54,7 @@ class TestMethods(unittest.TestCase):
     
   def test_qweather_geo_poi_range(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_geo_pack(conf)
     

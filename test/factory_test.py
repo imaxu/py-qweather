@@ -5,19 +5,20 @@ from pyqweather import QWeatherConfig
 from pyqweather.factories import QWeatherFactory
 
 from pyqweather.auth import EnvironmentVariableSimpleAuthCredential
+from . import domain
 
 class TestStringMethods(unittest.TestCase):
 
 
   def test_qweather_config(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     self.assertIsNotNone(conf)
 
 
   def test_qweather_factory_create_pack_not_exists(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_pack('geo1', conf)
     
@@ -26,7 +27,7 @@ class TestStringMethods(unittest.TestCase):
     
   def test_qweather_factory_create_pack(self):
     
-    conf = QWeatherConfig(EnvironmentVariableSimpleAuthCredential())
+    conf = QWeatherConfig(domain, EnvironmentVariableSimpleAuthCredential())
     factory = QWeatherFactory()
     pack = factory.create_pack('geo', conf)
     

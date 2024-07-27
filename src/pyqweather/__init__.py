@@ -9,8 +9,9 @@ class QWeatherConfig:
   """配置类
   """
   
-  def __init__(self, credential:AuthCredentialBase=None):
+  def __init__(self, domain:str, credential:AuthCredentialBase=None):
     self._credential = credential
+    self.domain = domain
 
 
   def get_credential(self):
@@ -21,9 +22,7 @@ class QWeatherPackBase(ABC):
   """QWeather接口包基类
 
   """
-  
-  _URL = ''
-  
+    
   def __init__(self, conf:QWeatherConfig):
     self._conf = conf
     
