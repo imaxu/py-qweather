@@ -2,6 +2,7 @@
 from abc import abstractmethod, ABC
 import hashlib
 import os
+import time
 
 
 class AuthCredentialBase(ABC):
@@ -56,6 +57,7 @@ class SignAuthCredential(AuthCredentialBase):
     super().__init__(public_id=public_id, app_key=app_key)
     self.app_key = app_key
     self.public_id = public_id
+    self.t = int(time.time())
 
   def _generate_signature(self, parameters: dict[str, str | int]):
     """
@@ -64,6 +66,9 @@ class SignAuthCredential(AuthCredentialBase):
     :param api_key: 用于签名的API密钥
     :return: 生成的签名
     """
+    
+    parameters.update({'t': self.t, 'publicid': self.public_id})
+    
     # 1. 将请求参数格式化为“key=value”格式
     key_value_pairs = [f"{key}={value}" for key, value in parameters.items() if value]
     
@@ -78,8 +83,10 @@ class SignAuthCredential(AuthCredentialBase):
     string_to_sign = f'{sorted_str}{self.app_key}'
     # 6. 将得到的字符串进行MD5加密
     md5_hash = hashlib.md5()
+    #print(string_to_sign)
     md5_hash.update(string_to_sign.encode('utf-8'))
     signature = md5_hash.hexdigest()
+    #print(signature)
     
     return signature
   
@@ -93,7 +100,7 @@ class SignAuthCredential(AuthCredentialBase):
             
             
   def create_sign_param(self, **kwargs):
-    return { 'sign' : self._generate_signature(kwargs) }  
+    return { 'sign' : self._generate_signature(kwargs), 't': self.t, 'publicid': self.public_id }  
   
   
 class EnvironmentVariableSignAuthCredential(SignAuthCredential):

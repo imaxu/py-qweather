@@ -1,52 +1,65 @@
 # coding: utf-8
 
 import unittest
+from datetime import datetime, timedelta
 from pyqweather import QWeatherConfig
 from pyqweather.factories import QWeatherFactory
 
 from pyqweather.auth import EnvironmentVariableSignAuthCredential
 
+
 class TestMethods(unittest.TestCase):
   
   _domain = 'https://api.qweather.com/v7'
   
-  def test_qweather_weather_weather_now(self):
+  def test_qweather_astronomy_sun(self):
     
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
+    pack = factory.create_astronomy_pack(conf)
     
     self.assertTrue(pack is not None)
     
-    resp = pack.weather_now('101010100')
+    date = (datetime.now().date() + timedelta(days=3)).strftime('%Y%m%d')
+    resp = pack.sun('101090101', date)
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(resp.now is not None)
+    self.assertTrue(resp.sunrise is not None)
+    print(resp)
     
     
+  def test_qweather_astronomy_moon(self):
     
-  def test_qweather_weather_weather_daily(self):
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
+    pack = factory.create_astronomy_pack(conf)
     
     self.assertTrue(pack is not None)
-    resp = pack.weather_30d('101010100')
+    
+    date = (datetime.now().date() + timedelta(days=3)).strftime('%Y%m%d')
+    resp = pack.moon('101090101', date)
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(len(resp.daily) == 30)
+    self.assertTrue(resp.moonPhase is not None)
+    print(resp.moonPhase)
     
     
-  def test_qweather_weather_weather_hourly(self):
+  def test_qweather_astronomy_solar_elevation_angle(self):
+    
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
+    pack = factory.create_astronomy_pack(conf)
     
     self.assertTrue(pack is not None)
-    resp = pack.weather_168h('101010100')
+    
+    date = (datetime.now().date() + timedelta(days=3)).strftime('%Y%m%d')
+    resp = pack.solar_elevation_angle('120.34,36.08', date, time='1230', alt='43')
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(len(resp.hourly) == 168)
+    self.assertTrue(resp.solarHour is not None)
+    print(resp)
+    
+
     
     
 if __name__ == '__main__':

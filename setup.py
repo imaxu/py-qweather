@@ -8,7 +8,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setup(
     name='pyqweather',
     version='1.0.1',
-    description='和风天气 api for python', 
+    description='和风天气 api for python3', 
     author='xuwh',  
     author_email='xuwhdev@gmail.com',
     url='http://xuwh.net',

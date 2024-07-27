@@ -3,15 +3,15 @@ from abc import abstractmethod, ABC
 from pyqweather.auth import AuthCredentialBase
 import requests
 from requests import Response
-
+from json import dumps
 
 class QWeatherConfig:
   """配置类
   """
   
-  def __init__(self, domain:str, credential:AuthCredentialBase=None):
+  def __init__(self, endpoint:str, credential:AuthCredentialBase=None):
     self._credential = credential
-    self.domain = domain
+    self.endpoint = endpoint
 
 
   def get_credential(self):
@@ -70,6 +70,7 @@ class QWeatherRequestBase(ABC):
     self._kwargs.update(self._credential.create_sign_param(**self._kwargs))
     resp = requests.get(fullurl, params=self._kwargs)
     
+    print(resp.url)
     if resp.status_code != 200:
       raise Exception(f'response status code {resp.status_code}, at {fullurl}')
     
@@ -83,11 +84,16 @@ class QWeatherResponseBase(ABC):
     self.code = self.get_arg('code', kwargs)
     
     
+  def __str__(self) -> str:
+    return dumps(self.__dict__)
+    
   def get_arg(self, name, dict, default=None):
     return dict[name] if name in dict else default
     
     
   def get_code(self) -> str:
     return self.code
+  
+  
 
   

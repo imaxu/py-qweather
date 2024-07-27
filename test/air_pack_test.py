@@ -6,47 +6,41 @@ from pyqweather.factories import QWeatherFactory
 
 from pyqweather.auth import EnvironmentVariableSignAuthCredential
 
+
 class TestMethods(unittest.TestCase):
   
   _domain = 'https://api.qweather.com/v7'
   
-  def test_qweather_weather_weather_now(self):
+  def test_qweather_air_now(self):
     
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
+    pack = factory.create_air_pack(conf)
     
     self.assertTrue(pack is not None)
     
-    resp = pack.weather_now('101010100')
+    resp = pack.air_now('101090101')
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.now is not None)
+    print(resp.now)
     
     
+  def test_qweather_air_5d(self):
     
-  def test_qweather_weather_weather_daily(self):
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
     factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
+    pack = factory.create_air_pack(conf)
     
     self.assertTrue(pack is not None)
-    resp = pack.weather_30d('101010100')
+    
+    resp = pack.air_5d('101090101')
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(len(resp.daily) == 30)
+    self.assertTrue(resp.daily is not None)
+    print(resp.daily)
     
-    
-  def test_qweather_weather_weather_hourly(self):
-    conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
-    factory = QWeatherFactory()
-    pack = factory.create_weather_pack(conf)
-    
-    self.assertTrue(pack is not None)
-    resp = pack.weather_168h('101010100')
-    self.assertEqual('200', resp.get_code())
-    
-    self.assertTrue(len(resp.hourly) == 168)
+
     
     
 if __name__ == '__main__':
