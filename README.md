@@ -67,6 +67,20 @@ print(resp)
 
 ## 接口的映射
 
-对应官网的[接口列表](https://dev.qweather.com/docs/api/)，每个分组我们定义了相应的Package类， 具体对应关系如下表所示：
+对应官网的[接口列表](https://dev.qweather.com/docs/api/)，定义了相应的Package类， 具体对应关系如下表所示：
 
-|接口分组  |  Package   |
+| 接口分组  |  Package   | 
+|----------| ---------- |
+| GeoAPI | geo_pack |
+| 城市天气 | weather_pack |
+| 分钟预报 | minutely_pack |
+| 格点天气 | grid_weather_pack |
+| 预警 | weather_warning_pack |
+| 天气指数 |  indices_pack |
+| 空气质量(beta) | air_quality_pack | 
+| 空气质量 | air_pack |
+| 时光机 | time_machine_pack |
+| 热带气旋（台风） | tropical_cyclone_pack | 
+| 海洋数据 | ocean_pack |
+| 太阳辐射 | solar_radiation_pack | 
+| 天文 | astronomy_pack |
