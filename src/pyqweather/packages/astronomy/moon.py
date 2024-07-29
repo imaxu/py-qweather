@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherMoonPhaseDto
+
 
 class AstronomyMoonRequest(QWeatherRequestBase):
   
@@ -21,7 +23,6 @@ class AstronomyMoonResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
     self.moonrise= self.get_arg('sunrise', kwargs, None)
     self.moonset= self.get_arg('sunset', kwargs, None)
-    self.moonPhase:list[any]= self.get_arg('moonPhase', kwargs, [])
+    self.moonPhase:list[QWeatherMoonPhaseDto]= self.get_items('moonPhase', kwargs, QWeatherMoonPhaseDto)

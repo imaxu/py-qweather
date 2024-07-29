@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherTropicalCycloneStormDto
+
 
 class StormListRequest(QWeatherRequestBase):
   
@@ -21,6 +23,5 @@ class StormListResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
-    self.storm:list[any] = self.get_arg('storm', kwargs, [])
+    self.storm:list[QWeatherTropicalCycloneStormDto] = self.get_items('storm', kwargs, QWeatherTropicalCycloneStormDto)
     

@@ -24,5 +24,5 @@ class AirDailyResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.daily:list[QWeatherAirDailyDto] = self.get_obj('daily', kwargs, QWeatherAirDailyDto)
+    self.daily:list[QWeatherAirDailyDto] = self.get_items('daily', kwargs, QWeatherAirDailyDto)
     

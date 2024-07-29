@@ -22,7 +22,9 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.warning is not None)
-    print(resp.warning)
+    
+    if len(resp.warning) > 0:
+      print(f'第一个预警： {resp.warning[0].text}')
     
     
     
@@ -36,6 +38,9 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.warningLocList is not None)
+    
+    if len(resp.warningLocList) > 0:
+      print(f'预警的区域： {resp.warningLocList[0].locationId}')
 
     
     

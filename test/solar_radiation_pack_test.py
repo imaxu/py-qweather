@@ -24,7 +24,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.radiation is not None)
-    print(resp.radiation)
+    print(f'{resp.radiation[0].net} W/m2')
     
 
     

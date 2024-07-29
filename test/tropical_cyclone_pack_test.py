@@ -26,7 +26,6 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.forecast is not None)
-    print(resp.forecast)
     
     
   def test_qweathertime_tropical_cyclone_storm_track(self):
@@ -39,8 +38,8 @@ class TestMethods(unittest.TestCase):
     resp = pack.storm_track('NP_2403')
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(resp.now is not None)
-    print(resp.now)
+    self.assertTrue(resp.isActive is not None)
+    print(f'isActive = {resp.isActive}')
     
     
   def test_qweathertime_tropical_cyclone_storm_list(self):
@@ -54,7 +53,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.storm is not None)
-    print(resp.storm)
+    print(resp.storm[0].name)
     
 
     

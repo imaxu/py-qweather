@@ -24,7 +24,6 @@ class AstronomySolarElevationAngleResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime               = self.get_arg('updateTime', kwargs, None)
     self.solarElevationAngle      = self.get_arg('solarElevationAngle', kwargs, None)
-    self.refer                    = self.get_arg('refer', kwargs, None)
     self.solarAzimuthAngle        = self.get_arg('solarAzimuthAngle', kwargs, None)
     self.solarHour                = self.get_arg('solarHour', kwargs, None)
     self.hourAngle                = self.get_arg('hourAngle', kwargs, None)

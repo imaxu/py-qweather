@@ -22,5 +22,5 @@ class StormForecastResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.forecast:list[QWeatherTropicalCycloneForecastDto] = self.get_obj('forecast', kwargs, QWeatherTropicalCycloneForecastDto)
+    self.forecast:list[QWeatherTropicalCycloneForecastDto] = self.get_items('forecast', kwargs, QWeatherTropicalCycloneForecastDto)
     

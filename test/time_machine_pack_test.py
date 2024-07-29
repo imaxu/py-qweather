@@ -41,7 +41,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.airHourly is not None)
-    print(resp.airHourly)
+    print(f'aqi = {resp.airHourly[0].aqi}')
     
 
     

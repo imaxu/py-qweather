@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherOceanTideDto, QWeatherOceanTideHourlyDto
+
 
 class TideRequest(QWeatherRequestBase):
   """未来10天全球潮汐数据，包括满潮、干潮高度和时间，逐小时潮汐数据。"""
@@ -22,6 +24,6 @@ class TideResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
-    self.tideTable:list[any] = self.get_arg('tideTable', kwargs, [])
+    self.tideTable:list[QWeatherOceanTideDto] = self.get_items('tideTable', kwargs, QWeatherOceanTideDto)
+    self.tideHourly:list[QWeatherOceanTideHourlyDto] = self.get_items('tideHourly', kwargs, QWeatherOceanTideHourlyDto)
     

@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherOceanCurrentsDto, QWeatherOceanCurrentsHourlyDto
+
 
 class CurrentsRequest(QWeatherRequestBase):
   """未来10天全球潮流数据，包括潮流流速和流向。
@@ -23,6 +25,6 @@ class CurrentsResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
-    self.currentsTable:list[any] = self.get_arg('currentsTable', kwargs, [])
+    self.currentsTable:list[QWeatherOceanCurrentsDto] = self.get_items('currentsTable', kwargs, QWeatherOceanCurrentsDto)
+    self.currentsHourly:list[QWeatherOceanCurrentsHourlyDto] = self.get_items('currentsHourly', kwargs, QWeatherOceanCurrentsHourlyDto)
     

@@ -25,5 +25,5 @@ class GridWeatherHourlyResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.hourly:list[QWeatherWeatherHourlyDataDto] = self.get_obj('hourly', kwargs, QWeatherWeatherHourlyDataDto)
+    self.hourly:list[QWeatherWeatherHourlyDataDto] = self.get_items('hourly', kwargs, QWeatherWeatherHourlyDataDto)
     

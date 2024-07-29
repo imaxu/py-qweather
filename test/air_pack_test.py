@@ -23,7 +23,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.now is not None)
-    print(resp.now)
+    print(resp.now.pm2p5)
     
     
   def test_qweather_air_5d(self):
@@ -38,7 +38,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.daily is not None)
-    print(resp.daily)
+    print(resp.daily[0].aqi)
     
 
     

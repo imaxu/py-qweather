@@ -23,6 +23,8 @@ class TestMethods(unittest.TestCase):
     
     self.assertTrue(resp.now is not None)
     
+    print(f'当前气压 = {resp.now.pressure} 百帕')
+    
     
     
   def test_qweather_weather_weather_daily(self):
@@ -36,6 +38,9 @@ class TestMethods(unittest.TestCase):
     
     self.assertTrue(len(resp.daily) == 30)
     
+    daily = resp.daily[0]
+    print(f'{daily.fxDate}: {daily.pressure} 百帕')
+    
     
   def test_qweather_weather_weather_hourly(self):
     conf = QWeatherConfig(self._domain, EnvironmentVariableSignAuthCredential())
@@ -47,6 +52,9 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(len(resp.hourly) == 168)
+    
+    hourly = resp.hourly[0]
+    print(f'{hourly.fxTime}: {hourly.pressure} 百帕')
     
     
 if __name__ == '__main__':

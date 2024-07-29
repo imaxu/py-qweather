@@ -260,9 +260,9 @@ class QWeatherAirQualityAQIDto(QWeatherDto):
   """空气质量指数类别，可能为空"""
   color  :str = None
   """空气质量指数的颜色，RGB格式"""
-  primaryPollutant :dict| any = None
+  primaryPollutant : dict = None
   """ 首要污染物"""
-  health :dict| any = None
+  health : dict = None
   """健康指导"""
   
   
@@ -274,9 +274,9 @@ class QWeatherAirQualityPollutantDto(QWeatherDto):
   """ 污染物的名字"""
   fullName : str = None
   """污染物的全称"""
-  concentration: dict| any = None
+  concentration: any = None
   """污染物的浓度值"""
-  subIndex: dict| any = None
+  subIndex: any = None
   """ 污染物的分指数"""
 
 
@@ -297,7 +297,7 @@ class QWeatherAirQualityStationPollutantDto(QWeatherDto):
   """ 污染物的名字"""
   fullName  : str = None
   """污染物的全称"""
-  concentration : dict| any = None
+  concentration : any = None
   """污染物的浓度"""
   
   
@@ -469,7 +469,108 @@ class QWeatherTropicalCycloneForecastDto(QWeatherDto):
   move360  : str = None
   """台风移动方位360度方向"""
   
+
+class QWeatherTropicalCycloneDataDto(QWeatherDto):
+  """台风实况数据"""
+  pubTime : str = None
+  """台风预报时间"""
+  lat  : str = None
+  """台风所处纬度"""
+  lon  : str = None
+  """台风所处经度"""
+  type  : str = None
+  """ 台风类型"""
+  pressure  : str = None
+  """台风中心气压"""
+  windSpeed : str = None
+  """台风附近最大风速"""
+  moveSpeed  : str = None
+  """台风移动速度"""
+  moveDir  : str = None
+  """台风移动方位"""
+  move360  : str = None
+  """台风移动方位360度方向"""  
+  windRadius30: any  = None
+  """当前台风7级风圈信息，可能为空"""
+  windRadius50: any = None
+  """台风10级风圈信息，可能为空"""
+  windRadius64: any = None
+  """台风12级风圈信息，可能为空"""
   
+  
+class   QWeatherTropicalCycloneStormDto(QWeatherDto):
+  """台风信息"""
+  id : str = None
+  """台风ID"""
+  stormId  : str = None
+  """台风ID"""
+  name  : str = None
+  """台风名称"""
+  basin  : str = None
+  """台风所处流域"""
+  year  : str = None
+  """ 台风所处年份"""
+  isActive  : str = None
+  """是否为活跃台风。1 活跃台风，0 停编。"""
+
+
+class QWeatherOceanTideDto(QWeatherDto):
+  """潮汐数据"""
+  fxTime : str = None
+  height  : str = None
+  type  : str = None
+  
+  
+class QWeatherOceanTideHourlyDto(QWeatherDto):
+  """潮汐逐小时数据"""
+  fxTime : str = None
+  height  : str = None
+  
+
+class QWeatherOceanCurrentsDto(QWeatherDto):
+  """潮流数据"""
+  fxTime : str = None
+  """潮流最大流速时间"""
+  speedMax   : str = None
+  """ 潮流最大流速，单位：厘米/秒"""
+  dir360   : str = None
+  """潮流360度方向"""
+  
+  
+class QWeatherOceanCurrentsHourlyDto(QWeatherDto):
+  """潮流逐小时数据"""
+  fxTime : str = None
+  """潮流逐小时预报时间"""
+  speed    : str = None
+  """ 潮流流速，单位：厘米/秒"""
+  dir360   : str = None
+  """潮流360度方向"""
+  
+
+class QWeatherSolarRadiationDto(QWeatherDto):
+  """太阳辐射数据"""
+  fxTime : str = None
+  """逐小时预报时间"""
+  net : str = None
+  """净太阳辐射，W/m2"""
+  diffuse : str = None
+  """太阳散射辐射，W/m2"""
+  direct : str = None
+  """太阳直接辐射，W/m2"""
+  
+
+class QWeatherMoonPhaseDto(QWeatherDto):
+  """月相数据"""
+  fxTime : str = None
+  """月相逐小时预报时间"""
+  value : str = None
+  """月相数值"""
+  name : str = None
+  """月相名称"""
+  icon : str = None
+  """月相图标代码"""
+  illumination : str = None
+  """月亮照明度，百分比数值"""
 
 class INDICES_TYPE(Enum):
   """天气指数类型"""

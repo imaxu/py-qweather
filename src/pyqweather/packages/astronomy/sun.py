@@ -21,7 +21,6 @@ class AstronomySunResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
     self.sunrise= self.get_arg('sunrise', kwargs, None)
     self.sunset= self.get_arg('sunset', kwargs, None)
     

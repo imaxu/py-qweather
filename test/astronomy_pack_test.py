@@ -25,7 +25,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.sunrise is not None)
-    print(resp)
+    print(resp.sunrise)
     
     
   def test_qweather_astronomy_moon(self):
@@ -41,7 +41,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.moonPhase is not None)
-    print(resp.moonPhase)
+    print(resp.moonPhase[0].name)
     
     
   def test_qweather_astronomy_solar_elevation_angle(self):
@@ -57,7 +57,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(resp.solarHour is not None)
-    print(resp)
+    print(resp.solarHour)
     
 
     

@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherSolarRadiationDto
+
 
 class SolarRadiationHourlyRequest(QWeatherRequestBase):
   """太阳辐射逐小时预报。
@@ -31,7 +33,6 @@ class SolarRadiationHourlyResponse(QWeatherResponseBase):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
-    self.refer= self.get_arg('refer', kwargs, None)
-    self.radiation:list[any] = self.get_arg('radiation', kwargs, [])
+    self.radiation:list[QWeatherSolarRadiationDto] = self.get_items('radiation', kwargs, QWeatherSolarRadiationDto)
     """除非特别说明，本数据返回的太阳辐射均指地表垂直向下的短波辐射，单位w/m2"""
     
