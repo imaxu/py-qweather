@@ -28,7 +28,10 @@ conf = QWeatherConfig(endpoint, auth_credential)
 pack = QWeatherFactory().create_geo_pack(conf)
 resp = pack.city_lookup('北京')
 
-print(resp)
+if resp.get_code() == '200':
+  print('OK')
+else:
+  print('Error')
 ```
 
 
@@ -66,9 +69,27 @@ resp = pack.city_lookup('北京')
 print(resp)
 ```
 
+### <span style="color:#F44336">特殊的地方</span>
+
+目前仅支持以**简单KEY认证的方式**调用空气质量（Beta）接口， 使用数字签名会报错。
+
+使用简单KEY认证的方式示例：
+
+```python
+conf = QWeatherConfig(self._domain,EnvironmentVariableSimpleAuthCredential())
+factory = QWeatherFactory()
+pack = factory.create_airquality_pack(conf)
+resp = pack.airquality_now('101090101')
+print(resp.aqi)
+```
+
 ## 接口的映射
 
-对应官网的[接口列表](https://dev.qweather.com/docs/api/)，定义了相应的Package类， 具体对应关系如下表所示：
+对应官网的[接口列表](https://dev.qweather.com/docs/api/)，组件也定义了相应的Package类， 你总是可以通过工厂方法 ```QWeatherFactory().create_xxx()```的方式创建对应的API类（xxx表示下表的Package）。
+
+具体对应关系如下表所示：
+
+
 
 | 接口分组  |  Package   | 
 |----------| ---------- |
