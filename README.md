@@ -31,6 +31,7 @@ resp = pack.city_lookup('北京')
 print(resp)
 ```
 
+
 ### 使用App Key设置环境变量
 
 #### Mac OS X/Linux/Unix
@@ -84,3 +85,8 @@ print(resp)
 | 海洋数据 | ocean_pack |
 | 太阳辐射 | solar_radiation_pack | 
 | 天文 | astronomy_pack |
+
+
+## 更多内容
+
+### [官方文档](https://dev.qweather.com/docs/start/)
