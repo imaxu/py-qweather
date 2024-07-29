@@ -23,6 +23,8 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())
     
     self.assertTrue(len(resp.location) > 0)
+    
+    print(resp.location[0].name)
 
     
     
@@ -38,6 +40,7 @@ class TestMethods(unittest.TestCase):
     self.assertEqual('200', resp.get_code())  
         
     self.assertTrue(len(resp.top_city_list) > 0)
+    self.assertTrue(resp.top_city_list[0].id is not None)
     
     
   def test_qweather_geo_poi_lookup(self):
@@ -51,7 +54,8 @@ class TestMethods(unittest.TestCase):
     resp = pack.poi_lookup('北京', 'scenic')
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(len(resp.poi) > 0)    
+    self.assertTrue(len(resp.poi) > 0)   
+    self.assertTrue(resp.poi[0].id is not None) 
     
   def test_qweather_geo_poi_range(self):
     
@@ -64,7 +68,8 @@ class TestMethods(unittest.TestCase):
     resp = pack.poi_range('116.41,39.92', 'scenic')
     self.assertEqual('200', resp.get_code())
     
-    self.assertTrue(len(resp.poi) > 0)      
+    self.assertTrue(len(resp.poi) > 0)   
+    self.assertTrue(resp.poi[0].id is not None)    
 
     
     

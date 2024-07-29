@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherLocationDto,  QWeatherReferDto
+
 
 class CityLookupRequest(QWeatherRequestBase):
   
@@ -23,5 +25,6 @@ class CityLookupResponse(QWeatherResponseBase):
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
-    self.location:list[any] = self.get_arg('location', kwargs, [])
+    self.location:list[QWeatherLocationDto] = self.get_items('location', kwargs, QWeatherLocationDto)
+    self.refer:QWeatherReferDto = self.get_obj('refer', kwargs, QWeatherReferDto)
     

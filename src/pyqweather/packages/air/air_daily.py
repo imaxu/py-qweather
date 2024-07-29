@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherAirDailyDto
+
 
 class AirDailyRequest(QWeatherRequestBase):
   
@@ -22,6 +24,5 @@ class AirDailyResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.daily:list[any] = self.get_arg('daily', kwargs, [])
-    self.refer = self.get_arg('refer', kwargs, None)
+    self.daily:list[QWeatherAirDailyDto] = self.get_obj('daily', kwargs, QWeatherAirDailyDto)
     

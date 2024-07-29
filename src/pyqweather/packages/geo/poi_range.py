@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherLocationDto
+
 
 class PoiRangeRequest(QWeatherRequestBase):
   
@@ -23,5 +25,5 @@ class PoiRangeResponse(QWeatherResponseBase):
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
-    self.poi:list[any] = self.get_arg('poi', kwargs, [])
+    self.poi:list[QWeatherLocationDto] = self.get_items('poi', kwargs, QWeatherLocationDto)
     

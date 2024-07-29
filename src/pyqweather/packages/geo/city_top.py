@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherLocationDto
+
 
 class CityTopRequest(QWeatherRequestBase):
   
@@ -21,5 +23,5 @@ class CityTopResponse(QWeatherResponseBase):
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
-    self.top_city_list:list[any] = self.get_arg('topCityList', kwargs, [])
+    self.top_city_list:list[QWeatherLocationDto] = self.get_items('topCityList', kwargs, QWeatherLocationDto)
     

@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherWarningDto
+
 
 class WarningNowRequest(QWeatherRequestBase):
   
@@ -22,5 +24,5 @@ class WarningNowResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.warning:list[any] = self.get_arg('warning', kwargs, [])
+    self.warning:list[QWeatherWarningDto] = self.get_items('warning', kwargs, QWeatherWarningDto)
     

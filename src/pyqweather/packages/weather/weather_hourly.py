@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherWeatherHourlyDataDto
+
 
 class WeatherHourlyRequest(QWeatherRequestBase):
   
@@ -23,5 +25,5 @@ class WeatherHourlyResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.hourly:list[any] = self.get_arg('hourly', kwargs, [])
+    self.hourly:list[QWeatherWeatherHourlyDataDto] = self.get_items('hourly', kwargs, QWeatherWeatherHourlyDataDto)
     

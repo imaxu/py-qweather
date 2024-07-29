@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherAirQualityAQIDto, QWeatherAirQualityPollutantDto, QWeatherAirQualityStationDto
+
 
 class AirQualityNowRequest(QWeatherRequestBase):
   
@@ -25,5 +27,8 @@ class AirQualityNowResponse(QWeatherResponseBase):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
-    self.aqi:list[any] = self.get_arg('aqi', kwargs, [])
+    self.aqi:list[QWeatherAirQualityAQIDto] = self.get_items('aqi', kwargs, QWeatherAirQualityAQIDto)
+    self.pollutant:list[QWeatherAirQualityPollutantDto] = self.get_items('pollutant', kwargs, QWeatherAirQualityPollutantDto)
+    self.station:list[QWeatherAirQualityStationDto] = self.get_items('station', kwargs, QWeatherAirQualityStationDto)
+    
     

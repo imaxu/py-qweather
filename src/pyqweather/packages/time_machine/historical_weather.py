@@ -1,5 +1,6 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherSimpleWeatherDto, QWeatherSimpleWeatherHourlyDto
 
 class HistoricalWeatherRequest(QWeatherRequestBase):
   
@@ -22,6 +23,6 @@ class HistoricalWeatherResponse(QWeatherResponseBase):
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.weatherDaily= self.get_arg('weatherDaily', kwargs, None)
-    self.weatherHourly:list[any] = self.get_arg('weatherHourly', kwargs, [])
+    self.weatherDaily: QWeatherSimpleWeatherDto = self.get_obj('weatherDaily', kwargs, QWeatherSimpleWeatherDto)
+    self.weatherHourly:list[QWeatherSimpleWeatherHourlyDto] = self.get_items('weatherHourly', kwargs, QWeatherSimpleWeatherHourlyDto)
     

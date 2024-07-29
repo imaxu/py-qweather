@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherAirRealDataDto, QWeatherAirStationDataDto
+
 
 class AirNowRequest(QWeatherRequestBase):
   
@@ -21,7 +23,6 @@ class AirNowResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.now = self.get_arg('now', kwargs, None)
-    self.station:list[any] = self.get_arg('station', kwargs, [])
-    self.refer = self.get_arg('refer', kwargs, None)
+    self.now:QWeatherAirRealDataDto = self.get_obj('now', kwargs, QWeatherAirRealDataDto)
+    self.station:list[QWeatherAirStationDataDto] = self.get_items('station', kwargs, QWeatherAirStationDataDto)
     

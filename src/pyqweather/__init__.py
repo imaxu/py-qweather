@@ -4,6 +4,7 @@ from pyqweather.auth import AuthCredentialBase
 import requests
 from requests import Response
 from json import dumps
+from pyqweather.packages import QWeatherReferDto
 
 class QWeatherConfig:
   """配置类
@@ -82,13 +83,23 @@ class QWeatherResponseBase(ABC):
   
   def __init__(self, **kwargs):
     self.code = self.get_arg('code', kwargs)
-    
+    """状态码"""
+    self.refer:QWeatherReferDto = self.get_obj('refer', kwargs, QWeatherReferDto)
+    """原始数据引用信息"""
     
   def __str__(self) -> str:
     return dumps(self.__dict__)
     
   def get_arg(self, name, dict, default=None):
     return dict[name] if name in dict else default
+    
+    
+  def get_obj(self, name, dict, cls:any):
+    return cls(**dict[name]) if name in dict else None
+    
+    
+  def get_items(self, name, dict, cls:any):
+    return list(map(lambda x: cls(**x), dict[name])) if name in dict else []
     
     
   def get_code(self) -> str:

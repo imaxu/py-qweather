@@ -1,5 +1,6 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from pyqweather.packages import QWeatherMinutelyRainDataDto
 
 class Minutely5mRequest(QWeatherRequestBase):
   
@@ -21,6 +22,6 @@ class Minutely5mResponse(QWeatherResponseBase):
     super().__init__(**kwargs)
     self.updateTime = self.get_arg('updateTime', kwargs, None)
     self.fxLink = self.get_arg('fxLink', kwargs, None)
-    self.minutely:list[any] = self.get_arg('minutely', kwargs, [])
+    self.minutely:list[QWeatherMinutelyRainDataDto] = self.get_items('minutely', kwargs, QWeatherMinutelyRainDataDto)
     self.summary = self.get_arg('summary', kwargs, None)
     
