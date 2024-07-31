@@ -7,11 +7,11 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name='pyqweather',
-    version='1.0.2',
+    version='1.0.3',
     description='和风天气 api for python3', 
     author='xuwh',  
     author_email='xuwhdev@gmail.com',
-    url='http://xuwh.net',
+    url='https://github.com/imaxu/py-qweather',
     long_description=long_description,
     long_description_content_type="text/markdown",
     package_dir={"": "src"},
