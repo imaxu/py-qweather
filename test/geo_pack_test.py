@@ -7,7 +7,7 @@ from pyqweather.factories import QWeatherFactory
 from pyqweather.auth import EnvironmentVariableSignAuthCredential
 
 
-class TestMethods(unittest.TestCase):
+class GeoPackTest(unittest.TestCase):
     
   _domain = 'https://geoapi.qweather.com/v2'
     

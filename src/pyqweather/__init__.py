@@ -5,6 +5,8 @@ import requests
 from requests import Response
 from json import dumps
 from pyqweather.packages import QWeatherReferDto
+from dataclasses import dataclass, asdict
+
 
 class QWeatherConfig:
   """配置类
@@ -12,7 +14,9 @@ class QWeatherConfig:
   
   def __init__(self, endpoint:str, credential:AuthCredentialBase=None):
     self._credential = credential
-    self.endpoint = endpoint
+    self.endpoint = endpoint \
+      if endpoint.startswith('https://') or endpoint.startswith('http://')\
+      else f'https://{endpoint}'
 
 
   def get_credential(self):
@@ -31,7 +35,7 @@ class QWeatherPackBase(ABC):
   def get_conf(self):
     return self._conf
   
-  
+@dataclass
 class QWeatherRequestBase(ABC):
   """QWeather请求对象
   """
@@ -67,19 +71,20 @@ class QWeatherRequestBase(ABC):
       raise Exception(f'Auth credential required, but it is empty or None') 
     
     fullurl = f'{self._url}{self._PATH}'
-    print(fullurl)
     self._kwargs.update(self._credential.create_sign_param(**self._kwargs))
     resp = requests.get(fullurl, params=self._kwargs)
     
-    print(resp.url)
     if resp.status_code != 200:
       raise Exception(f'response status code {resp.status_code}, at {fullurl}')
     
     return resp.json()
     
   
-  
+@dataclass
 class QWeatherResponseBase(ABC):
+  
+  code: str
+  refer: QWeatherReferDto
   
   def __init__(self, **kwargs):
     self.code = self.get_arg('code', kwargs)
@@ -88,7 +93,8 @@ class QWeatherResponseBase(ABC):
     """原始数据引用信息"""
     
   def __str__(self) -> str:
-    return dumps(self.__dict__)
+    return dumps(asdict(self))
+  
     
   def get_arg(self, name, dict, default=None):
     return dict[name] if name in dict else default

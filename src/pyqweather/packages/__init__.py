@@ -2,20 +2,24 @@
 
 from enum import Enum
 from abc import ABC
+from dataclasses import dataclass, asdict
+from json import dumps
 
+@dataclass
 class QWeatherDto(ABC):
   
   def __init__(self, **data):
     self.__dict__.update(data)
+    
 
-
+@dataclass
 class QWeatherReferDto(QWeatherDto):
   sources : str = None
   """原始数据来源，或数据源说明，可能为空"""
   license : str = None
   """数据许可或版权声明，可能为空"""
 
-
+@dataclass
 class QWeatherWeatherDataDto(QWeatherDto):
   """城市天气预报数据"""
   
@@ -50,7 +54,7 @@ class QWeatherWeatherDataDto(QWeatherDto):
   dew  : str = None
   """露点温度。可能为空"""
   
-  
+@dataclass
 class QWeatherWeatherDailyDataDto(QWeatherDto):
   """每日天气预报数据"""
   
@@ -109,7 +113,7 @@ class QWeatherWeatherDailyDataDto(QWeatherDto):
   cloud : str = None
   """云量，百分比数值。可能为空"""
 
-
+@dataclass
 class QWeatherWeatherHourlyDataDto(QWeatherDto):
   """逐小时天气预报数据"""
   
@@ -142,7 +146,7 @@ class QWeatherWeatherHourlyDataDto(QWeatherDto):
   dew : str = None
   """露点温度。可能为空"""
 
-
+@dataclass
 class QWeatherMinutelyRainDataDto(QWeatherDto):
   """分钟级降水量数据"""
   
@@ -153,7 +157,7 @@ class QWeatherMinutelyRainDataDto(QWeatherDto):
   type : str = None
   """降水类型：rain = 雨，snow = 雪"""
 
-
+@dataclass
 class QWeatherLocationDto(QWeatherDto):
   """搜索城市返回的地区详情"""
   
@@ -175,7 +179,7 @@ class QWeatherLocationDto(QWeatherDto):
   """地区/城市所在时区"""
   utcOffset:str = None
   """地区/城市目前与UTC时间偏移的小时数"""
-  isDist:str = None
+  isDst:str = None
   """地区/城市是否当前处于夏令时。1 表示当前处于夏令时，0 表示当前不是夏令时。"""
   type:str = None
   """地区/城市的属性"""
@@ -184,7 +188,7 @@ class QWeatherLocationDto(QWeatherDto):
   fxLink : str = None
   """该地区的天气预报网页链接，便于嵌入你的网站或应用"""
 
-
+@dataclass
 class QWeatherWarningDto(QWeatherDto):
   """天气预警数据"""
 
@@ -218,14 +222,16 @@ class QWeatherWarningDto(QWeatherDto):
   """预警详细文字描述"""
   related : str = None
   """与本条预警相关联的预警ID，当预警状态为cancel或update时返回。可能为空"""
+  level : str = None
+  """ 预警等级（已弃用），不要再使用这个字段，该字段已弃用，目前返回为空或未更新的值。请使用severity和severityColor代替"""
 
-
+@dataclass
 class QWeatherWarningCityDto(QWeatherDto):
   """预警城市信息"""
   locationId : str = None
   """当前国家预警的LocationID"""
   
-  
+@dataclass
 class QWeatherIndicesDailyDto(QWeatherDto):
   """天气指数每日数据"""
   date : str = None
@@ -241,7 +247,7 @@ class QWeatherIndicesDailyDto(QWeatherDto):
   text : str = None
   """生活指数预报的详细描述，可能为空"""
 
-
+@dataclass
 class QWeatherAirQualityAQIDto(QWeatherDto):
   """空气质量AQI数据"""
   code :str = None
@@ -265,7 +271,7 @@ class QWeatherAirQualityAQIDto(QWeatherDto):
   health : dict = None
   """健康指导"""
   
-  
+@dataclass
 class QWeatherAirQualityPollutantDto(QWeatherDto):
   """空气质量污染物数据"""
   code: str = None
@@ -279,7 +285,7 @@ class QWeatherAirQualityPollutantDto(QWeatherDto):
   subIndex: any = None
   """ 污染物的分指数"""
 
-
+@dataclass
 class QWeatherAirQualityStationDto(QWeatherDto):
   """空气质量（Beta）监测站数据"""
   
@@ -288,7 +294,7 @@ class QWeatherAirQualityStationDto(QWeatherDto):
   name: str = None
   """AQI相关联的监测站名称"""
   
-  
+@dataclass
 class QWeatherAirQualityStationPollutantDto(QWeatherDto):
   """空气质量监测站污染物数据"""
   code : str = None
@@ -300,7 +306,7 @@ class QWeatherAirQualityStationPollutantDto(QWeatherDto):
   concentration : any = None
   """污染物的浓度"""
   
-  
+@dataclass
 class QWeatherAirRealDataDto(QWeatherDto):
   """空气质量实时数据"""
   pubTime : str = None
@@ -325,7 +331,7 @@ class QWeatherAirRealDataDto(QWeatherDto):
   """臭氧"""
   primary  : str = None
   """空气质量的主要污染物，空气质量为优时，返回值为NA"""
-
+@dataclass
 class QWeatherAirStationDataDto(QWeatherDto):
   """空气质量监测站数据"""
   name : str = None
@@ -355,7 +361,7 @@ class QWeatherAirStationDataDto(QWeatherDto):
   o3  : str = None
   """臭氧"""
   
-
+@dataclass
 class QWeatherAirDailyDto(QWeatherDto):
   """空气质量每日预报数据"""
   fxDate : str = None
@@ -369,7 +375,7 @@ class QWeatherAirDailyDto(QWeatherDto):
   aqi  : str = None
   """空气质量指数"""
   
-  
+@dataclass
 class QWeatherSimpleWeatherDto(QWeatherDto):
   """每日天气简单数据"""
   date : str = None
@@ -395,7 +401,7 @@ class QWeatherSimpleWeatherDto(QWeatherDto):
   humidity  : str = None
   """当天每小时相对湿度，百分比数值"""
 
-
+@dataclass
 class QWeatherSimpleWeatherHourlyDto(QWeatherDto):
   """逐小时天气简单数据"""
   time : str = None
@@ -421,7 +427,7 @@ class QWeatherSimpleWeatherHourlyDto(QWeatherDto):
   pressure  : str = None
   """大气压强，默认单位：百帕"""
 
-
+@dataclass
 class QWeatherSimpleAirHourlyDto(QWeatherDto):
   """逐小时空气质量简单数据"""
   pubTime : str = None
@@ -447,7 +453,7 @@ class QWeatherSimpleAirHourlyDto(QWeatherDto):
   o3  : str = None
   """臭氧"""
 
-
+@dataclass
 class QWeatherTropicalCycloneForecastDto(QWeatherDto):
   """台风预报数据"""
   fxTime : str = None
@@ -468,8 +474,9 @@ class QWeatherTropicalCycloneForecastDto(QWeatherDto):
   """台风移动方位"""
   move360  : str = None
   """台风移动方位360度方向"""
-  
 
+  
+@dataclass
 class QWeatherTropicalCycloneDataDto(QWeatherDto):
   """台风实况数据"""
   pubTime : str = None
@@ -496,8 +503,9 @@ class QWeatherTropicalCycloneDataDto(QWeatherDto):
   """台风10级风圈信息，可能为空"""
   windRadius64: any = None
   """台风12级风圈信息，可能为空"""
+  time: str = None
   
-  
+@dataclass
 class   QWeatherTropicalCycloneStormDto(QWeatherDto):
   """台风信息"""
   id : str = None
@@ -513,20 +521,20 @@ class   QWeatherTropicalCycloneStormDto(QWeatherDto):
   isActive  : str = None
   """是否为活跃台风。1 活跃台风，0 停编。"""
 
-
+@dataclass
 class QWeatherOceanTideDto(QWeatherDto):
   """潮汐数据"""
   fxTime : str = None
   height  : str = None
   type  : str = None
   
-  
+@dataclass
 class QWeatherOceanTideHourlyDto(QWeatherDto):
   """潮汐逐小时数据"""
   fxTime : str = None
   height  : str = None
   
-
+@dataclass
 class QWeatherOceanCurrentsDto(QWeatherDto):
   """潮流数据"""
   fxTime : str = None
@@ -536,7 +544,7 @@ class QWeatherOceanCurrentsDto(QWeatherDto):
   dir360   : str = None
   """潮流360度方向"""
   
-  
+@dataclass
 class QWeatherOceanCurrentsHourlyDto(QWeatherDto):
   """潮流逐小时数据"""
   fxTime : str = None
@@ -546,7 +554,7 @@ class QWeatherOceanCurrentsHourlyDto(QWeatherDto):
   dir360   : str = None
   """潮流360度方向"""
   
-
+@dataclass
 class QWeatherSolarRadiationDto(QWeatherDto):
   """太阳辐射数据"""
   fxTime : str = None
@@ -558,7 +566,7 @@ class QWeatherSolarRadiationDto(QWeatherDto):
   direct : str = None
   """太阳直接辐射，W/m2"""
   
-
+@dataclass
 class QWeatherMoonPhaseDto(QWeatherDto):
   """月相数据"""
   fxTime : str = None

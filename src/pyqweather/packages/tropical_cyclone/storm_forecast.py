@@ -1,7 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherTropicalCycloneForecastDto
-
+from dataclasses import dataclass
 
 class StormForecastRequest(QWeatherRequestBase):
   
@@ -16,7 +16,12 @@ class StormForecastRequest(QWeatherRequestBase):
     return f'stormid={self.stormid}'
   
 
+@dataclass
 class StormForecastResponse(QWeatherResponseBase):
+  
+  updateTime:str
+  fxLink: str
+  forecast:list[QWeatherTropicalCycloneForecastDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

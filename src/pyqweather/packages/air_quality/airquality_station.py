@@ -1,7 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherAirQualityStationPollutantDto
-
+from dataclasses import dataclass
 
 class AirQualityStationRequest(QWeatherRequestBase):
   
@@ -19,8 +19,12 @@ class AirQualityStationRequest(QWeatherRequestBase):
     return f'location={self.location}'
   
 
-
+@dataclass
 class AirQualityStationResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  pollutant:list[QWeatherAirQualityStationPollutantDto]
+  
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

@@ -1,8 +1,9 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherWarningDto
+from dataclasses import dataclass
 
-
+@dataclass
 class WarningNowRequest(QWeatherRequestBase):
   
   _PATH = '/warning/now'
@@ -17,8 +18,12 @@ class WarningNowRequest(QWeatherRequestBase):
     return f'location={self.location}'
   
 
-
+@dataclass
 class WarningNowResponse(QWeatherResponseBase):
+  
+  updateTime:str
+  fxLink: str
+  warning:list[QWeatherWarningDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

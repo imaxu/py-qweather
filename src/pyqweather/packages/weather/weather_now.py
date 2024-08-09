@@ -1,8 +1,9 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherWeatherDataDto
+from dataclasses import dataclass, asdict
 
-
+@dataclass
 class WeatherNowRequest(QWeatherRequestBase):
   
   _PATH = '/weather/now'
@@ -18,8 +19,12 @@ class WeatherNowRequest(QWeatherRequestBase):
     return f'location={self.location}'
   
 
-
+@dataclass
 class WeatherNowResponse(QWeatherResponseBase):
+  
+  updateTime:str
+  fxLink: str
+  now:QWeatherWeatherDataDto
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

@@ -1,6 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherOceanTideDto, QWeatherOceanTideHourlyDto
+from dataclasses import dataclass
 
 
 class TideRequest(QWeatherRequestBase):
@@ -17,8 +18,13 @@ class TideRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+@dataclass
 class TideResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  fxLink: str
+  tideTable:list[QWeatherOceanTideDto]
+  tideHourly:list[QWeatherOceanTideHourlyDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

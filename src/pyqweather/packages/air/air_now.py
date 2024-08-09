@@ -1,6 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherAirRealDataDto, QWeatherAirStationDataDto
+from dataclasses import dataclass
 
 
 class AirNowRequest(QWeatherRequestBase):
@@ -17,7 +18,14 @@ class AirNowRequest(QWeatherRequestBase):
     return f'location={self.location}'
   
 
+@dataclass
 class AirNowResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  fxLink: str
+  now:QWeatherAirRealDataDto
+  station:list[QWeatherAirStationDataDto]
+  
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

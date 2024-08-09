@@ -6,7 +6,7 @@ from pyqweather.factories import QWeatherFactory
 
 from pyqweather.auth import EnvironmentVariableSignAuthCredential
 
-class TestMethods(unittest.TestCase):
+class WeatherPackTest(unittest.TestCase):
   
   _domain = 'https://api.qweather.com/v7'
   
@@ -23,6 +23,7 @@ class TestMethods(unittest.TestCase):
     
     self.assertTrue(resp.now is not None)
     
+    print(resp)
     print(f'当前气压 = {resp.now.pressure} 百帕')
     
     

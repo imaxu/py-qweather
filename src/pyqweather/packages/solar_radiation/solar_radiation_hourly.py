@@ -1,7 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherSolarRadiationDto
-
+from dataclasses import dataclass
 
 class SolarRadiationHourlyRequest(QWeatherRequestBase):
   """太阳辐射逐小时预报。
@@ -27,8 +27,12 @@ class SolarRadiationHourlyRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+  
+@dataclass
 class SolarRadiationHourlyResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  radiation:list[QWeatherSolarRadiationDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

@@ -1,8 +1,9 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherWarningCityDto
+from dataclasses import dataclass
 
-
+@dataclass
 class WarningListRequest(QWeatherRequestBase):
   """获取指定国家或地区当前正在发生天气灾害预警的城市列表"""
   
@@ -17,8 +18,11 @@ class WarningListRequest(QWeatherRequestBase):
     return f'location={self.location}'
   
 
-
+@dataclass
 class WarningListResponse(QWeatherResponseBase):
+  
+  updateTime:str
+  warningLocList:list[QWeatherWarningCityDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
