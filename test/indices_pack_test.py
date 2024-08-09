@@ -8,7 +8,7 @@ from pyqweather.auth import EnvironmentVariableSignAuthCredential
 from pyqweather.packages import INDICES_TYPE
 
 
-class TestMethods(unittest.TestCase):
+class IndicesPackTest(unittest.TestCase):
   
   _domain = 'https://api.qweather.com/v7'
   

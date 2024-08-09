@@ -1,8 +1,9 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherWeatherDailyDataDto
+from dataclasses import dataclass
 
-
+@dataclass
 class WeatherDailyRequest(QWeatherRequestBase):
   
   _PATH = '/weather'
@@ -18,8 +19,12 @@ class WeatherDailyRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+@dataclass
 class WeatherDailyResponse(QWeatherResponseBase):
+  
+  updateTime:str
+  fxLink: str
+  daily:list[QWeatherWeatherDailyDataDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

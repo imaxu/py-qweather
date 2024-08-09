@@ -1,6 +1,8 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherSimpleWeatherDto, QWeatherSimpleWeatherHourlyDto
+from dataclasses import dataclass
+
 
 class HistoricalWeatherRequest(QWeatherRequestBase):
   
@@ -17,8 +19,12 @@ class HistoricalWeatherRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+@dataclass
 class HistoricalWeatherResponse(QWeatherResponseBase):
+  
+  fxLink: str
+  weatherDaily: QWeatherSimpleWeatherDto
+  weatherHourly:list[QWeatherSimpleWeatherHourlyDto]
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

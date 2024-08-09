@@ -9,7 +9,7 @@ from pyqweather.factories import QWeatherFactory
 from pyqweather.auth import EnvironmentVariableSignAuthCredential
 
 
-class TestMethods(unittest.TestCase):
+class SolarRadiationPackTest(unittest.TestCase):
   
   _endpoint = 'https://api.qweather.com/v7'
   

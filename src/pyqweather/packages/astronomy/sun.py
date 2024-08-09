@@ -1,5 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
+from dataclasses import dataclass
+
 
 class AstronomySunRequest(QWeatherRequestBase):
   
@@ -14,8 +16,14 @@ class AstronomySunRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+@dataclass
 class AstronomySunResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  fxLink: str
+  sunrise: str
+  sunset: str
+  
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)

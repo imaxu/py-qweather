@@ -1,6 +1,7 @@
 
 from pyqweather import QWeatherRequestBase, QWeatherResponseBase
 from pyqweather.packages import QWeatherOceanCurrentsDto, QWeatherOceanCurrentsHourlyDto
+from dataclasses import dataclass
 
 
 class CurrentsRequest(QWeatherRequestBase):
@@ -18,8 +19,14 @@ class CurrentsRequest(QWeatherRequestBase):
   def __str__(self) -> str:
     return f'location={self.location}'
   
-
+@dataclass
 class CurrentsResponse(QWeatherResponseBase):
+  
+  updateTime: str
+  fxLink: str
+  currentsTable:list[QWeatherOceanCurrentsDto]
+  currentsHourly:list[QWeatherOceanCurrentsHourlyDto]  
+  
   
   def __init__(self, **kwargs):
     super().__init__(**kwargs)
