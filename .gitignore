@@ -410,3 +410,4 @@ FodyWeavers.xsd
 .venv
 build/
 *.egg-info/
+dist/
