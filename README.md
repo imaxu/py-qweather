@@ -2,6 +2,7 @@
 和风天气 api for python3。
 
 [![Supported Versions](https://img.shields.io/badge/python-&nbsp;&nbsp;3.10&nbsp;|&nbsp;3.11&nbsp;|&nbsp;3.12&nbsp;-blue)](https://pypi.org/project/pyqweather/)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/pyqweather)
 
 ## 安装
 
