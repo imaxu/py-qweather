@@ -22,8 +22,8 @@ class AirDailyRequest(QWeatherRequestBase):
 class AirDailyResponse(QWeatherResponseBase):
   
   updateTime: str
-  fxLink: str
-  daily:list[QWeatherAirDailyDto]
+  fxLink:     str
+  daily:      list[QWeatherAirDailyDto]
   
   
   def __init__(self, **kwargs):
